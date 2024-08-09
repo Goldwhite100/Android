@@ -17,6 +17,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,6 +31,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.propertyplus.R
 import com.example.propertyplus.navigation.ROUT_DETAIL
 import com.example.propertyplus.ui.theme.newGreen
@@ -46,15 +51,15 @@ fun HomeScreen(navController: NavController){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Image(
-            painter = painterResource(id = R.drawable.home) ,
-            contentDescription = "home",
-            modifier = Modifier
-                .size(300.dp)
-                .clip(shape = CircleShape),
-            contentScale = ContentScale.Crop
-
+        //Lottie Animation......shuold replace image in splash screen
+        val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.property))
+        val progress by animateLottieCompositionAsState(composition)
+        LottieAnimation(composition, progress,
+            modifier = Modifier.size(300.dp)
         )
+
+
+
 
         Text(
             text = "PropertyPlus",
