@@ -5,6 +5,7 @@ import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
@@ -34,9 +35,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.propertyplus.ui.theme.newGreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -68,7 +74,7 @@ fun PropertyScreen(navController: NavController){
                                         }
                                     }
                                 ) {
-                                    icon (imageVector =
+                                        Icon(imageVector =
                                     if (index == selected)
                                         bottomNavItem.selectedIcon
                                     else
@@ -86,7 +92,7 @@ fun PropertyScreen(navController: NavController){
             topBar = {
                 TopAppBar(
                     title = { Text(text = "Propertyplus")},
-                    colors = TopAppBarDefaults.mediumTopAppBarColors()
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(newGreen)
                     )
             },
 
@@ -102,11 +108,17 @@ fun PropertyScreen(navController: NavController){
             //Content Section
             content = @Composable{
                 Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    modifier = Modifier.fillMaxSize()
+                        .padding(top = 50.dp)
                 ){
-                    Text(text = "Homepage")
+                    Text(
+                        text = "Properties",
+                        fontSize = 60.sp,
+                        fontFamily = FontFamily.Cursive,
+                        fontWeight = FontWeight.ExtraBold
+
+
+                        )
 
                 }
 
@@ -120,9 +132,6 @@ fun PropertyScreen(navController: NavController){
 
 }
 
-fun icon(imageVector: Any, contentDescription: String) {
-
-}
 
 val bottomNavItems = listOf(
     BottomNavItem(

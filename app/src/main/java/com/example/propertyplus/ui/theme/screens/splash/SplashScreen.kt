@@ -43,7 +43,7 @@ fun SplashScreen(navController: NavController){
         horizontalAlignment = Alignment.CenterHorizontally)
 
 
-
+//MAIN
     {
         var coroutineScope = rememberCoroutineScope()
         coroutineScope.launch {
