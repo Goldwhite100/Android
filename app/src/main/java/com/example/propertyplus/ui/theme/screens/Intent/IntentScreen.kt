@@ -22,11 +22,15 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.outlined.Face
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.AlertDialogDefaults.shape
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
@@ -79,6 +83,7 @@ fun IntentScreen(navController: NavController){
 
     Column (modifier = Modifier.fillMaxSize()){
         var selected by remember { mutableIntStateOf(0) }
+        //signup and login not need scaffold
         Scaffold(
             bottomBar = {
                 NavigationBar(
@@ -223,10 +228,16 @@ fun IntentScreen(navController: NavController){
                                 )
                             }
                             Text(text = "14,400 Reviews")
+                            val mContext = LocalContext.current
+
                             Button(
-                                onClick = { /*TODO*/ },
-                                colors = ButtonDefaults.buttonColors(Color.DarkGray),
+                                onClick = {
+                                    val callIntent = Intent(Intent.ACTION_DIAL)
+                                    callIntent.data = "tel:0702065344".toUri()
+                                    mContext.startActivity(callIntent)},
+                                colors = ButtonDefaults.buttonColors(),
                                 shape = RoundedCornerShape(10.dp)
+
 
                             ) {
 
@@ -263,18 +274,16 @@ fun IntentScreen(navController: NavController){
                     //CALL
                     Button(
                         onClick = {
-
-                            val shareIntent = Intent(Intent.ACTION_SEND)
-                            shareIntent.type = "text/plain"
-                            shareIntent.putExtra(
-                                Intent.EXTRA_EMAIL,
-                                arrayOf("akinyiglory2@gmail.com")
-                            )
-                            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "subject")
-                            shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello, this is the email body")
-                            mContext.startActivity(shareIntent)
-
+                            val smsIntent = Intent(Intent.ACTION_SENDTO)
+                            val callIntent = Intent(Intent.ACTION_DIAL)
+                            callIntent.data = "tel:0702065344".toUri()
+                            mContext.startActivity(callIntent)
                         },
+
+
+
+
+
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp)
@@ -284,6 +293,9 @@ fun IntentScreen(navController: NavController){
                     ) {
                         Text(text = "CALL")
                     }
+
+
+
                     Spacer(modifier = Modifier.height(10.dp))
 
                     //SMS
@@ -362,7 +374,9 @@ fun IntentScreen(navController: NavController){
                                 println("Camera app is not available")
                             }
                         },
-                        modifier = Modifier.fillMaxWidth().height(50.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp)
                             .padding(start = 20.dp, end = 20.dp),
                         colors = ButtonDefaults.buttonColors(Purple80),
                         shape = RoundedCornerShape(10.dp)
@@ -394,25 +408,34 @@ val bottomNavItems = listOf(
 
 
     BottomNavItem(
-        title = "Login",
-        route="login",
-        selectedIcon=Icons.Filled.Person,
-        unselectedIcon=Icons.Outlined.Person,
+        title = "Details",
+        route="details",
+        selectedIcon=Icons.Filled.Info,
+        unselectedIcon=Icons.Outlined.Info,
         hasNews = true,
         badges=5
     ),
 
     BottomNavItem(
-        title = "Signup",
-        route="signup",
-        selectedIcon=Icons.Filled.Face,
-        unselectedIcon=Icons.Outlined.Face,
+        title = "Property",
+        route="Property",
+        selectedIcon=Icons.Filled.Info,
+        unselectedIcon=Icons.Outlined.Info,
         hasNews = true,
         badges=1
     ),
 
+    BottomNavItem(
+        title = "About",
+        route="about",
+        selectedIcon=Icons.Filled.ShoppingCart,
+        unselectedIcon=Icons.Outlined.ShoppingCart,
+        hasNews = true,
+        badges=1
 
-    )
+
+    ),
+)
 
 
 

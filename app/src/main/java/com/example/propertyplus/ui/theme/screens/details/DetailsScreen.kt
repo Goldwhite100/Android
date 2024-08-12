@@ -230,7 +230,7 @@ fun DetailsScreen(navController: NavController){
 
 
         }
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
 
         Button(
