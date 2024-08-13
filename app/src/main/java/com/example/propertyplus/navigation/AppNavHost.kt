@@ -54,8 +54,13 @@ fun AppNavHost(
         composable(ROUT_SIGNUP) {
             SignupScreen(navController = navController)
 
-
-
         }
+        composable(ROUT_SIGNUP) {
+                SignupScreen(navController = navController)
+
+
+
+
+            }
     }
 }
