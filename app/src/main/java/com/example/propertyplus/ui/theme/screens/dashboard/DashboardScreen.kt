@@ -32,7 +32,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.propertyplus.R
+import com.example.propertyplus.navigation.ADD_PRODUCTS_URL
 import com.example.propertyplus.navigation.ROUT_PROPERTY
+import com.example.propertyplus.navigation.VIEW_PRODUCTS_URL
 import com.example.propertyplus.ui.theme.newGreen
 
 @Composable
@@ -197,7 +199,11 @@ fun DashboardScreen(navController: NavController){
                     Row(modifier = Modifier.padding(20.dp)) {
                         Card (modifier = Modifier
                             .width(160.dp)
-                            .height(180.dp)){
+                            .height(180.dp)
+                            .clickable {
+                                navController.navigate(ADD_PRODUCTS_URL)
+                            }
+                        ){
                             Column {
                                 Spacer(modifier = Modifier.height(10.dp))
                                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
@@ -208,7 +214,7 @@ fun DashboardScreen(navController: NavController){
                                 }
                                 Spacer(modifier = Modifier.height(10.dp))
                                 Text(
-                                    text = "Home",
+                                    text = "Add Products",
                                     fontSize = 18.sp,
                                     fontFamily = FontFamily.SansSerif,
                                     color = Color.LightGray,
@@ -223,7 +229,11 @@ fun DashboardScreen(navController: NavController){
                         //card 2
                         Card (modifier = Modifier
                             .width(160.dp)
-                            .height(180.dp)){
+                            .height(180.dp)
+                            .clickable {
+                                navController.navigate(VIEW_PRODUCTS_URL)
+                            }
+                        ){
                             Column {
                                 Spacer(modifier = Modifier.height(10.dp))
                                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
@@ -234,7 +244,7 @@ fun DashboardScreen(navController: NavController){
                                 }
                                 Spacer(modifier = Modifier.height(10.dp))
                                 Text(
-                                    text = "Home",
+                                    text = "View Products",
                                     fontSize = 18.sp,
                                     fontFamily = FontFamily.SansSerif,
                                     color = Color.LightGray,
